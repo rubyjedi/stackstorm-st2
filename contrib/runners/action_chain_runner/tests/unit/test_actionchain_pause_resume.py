@@ -402,7 +402,7 @@ class ActionChainRunnerPauseResumeTest(ExecutionDbTestCase):
         self.assertIn("tasks", liveaction.result)
         self.assertEqual(len(liveaction.result["tasks"]), 2)
         self.assertTrue(liveaction.result["tasks"][0]["result"]["failed"])
-        self.assertEqual(1, liveaction.result["tasks"][0]["result"]["return_code"])
+        self.assertGreaterEqual(liveaction.result["tasks"][0]["result"]["return_code"], 1)  # My bash returns errlevel==2 for this, not 1.
         self.assertTrue(liveaction.result["tasks"][1]["result"]["succeeded"])
         self.assertEqual(0, liveaction.result["tasks"][1]["result"]["return_code"])
 

@@ -18,7 +18,7 @@ import json
 import os
 
 from mock import patch, Mock, MagicMock
-import unittest2
+from unittest import TestCase
 
 from st2common.runners.parallel_ssh import ParallelSSHClient
 from st2common.runners.paramiko_ssh import ParamikoSSHClient
@@ -35,7 +35,7 @@ sudo: 2 incorrect password attempts
 """
 
 
-class ParallelSSHTests(unittest2.TestCase):
+class ParallelSSHTests(TestCase):
     @patch("paramiko.SSHClient", Mock)
     @patch.object(
         ParamikoSSHClient,

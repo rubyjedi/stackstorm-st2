@@ -17,7 +17,7 @@ from __future__ import absolute_import
 
 import mock
 import six
-import unittest2
+from unittest import TestCase
 
 import st2tests
 
@@ -42,7 +42,7 @@ MOCK_CTX = {"__vars": {"st2": {"user": "stanley"}}}
 MOCK_CTX_NO_USER = {"__vars": {"st2": {}}}
 
 
-class DatastoreFunctionTest(unittest2.TestCase):
+class DatastoreFunctionTest(TestCase):
     def test_missing_user_context(self):
         self.assertRaises(KeyError, st2kv.st2kv_, MOCK_CTX_NO_USER, "foo")
 

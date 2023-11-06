@@ -40,8 +40,7 @@ import eventlet
 import psutil
 import mock
 from oslo_config import cfg
-from unittest2 import TestCase
-import unittest2
+from unittest import TestCase
 
 from orquesta import conducting
 from orquesta import events
@@ -139,7 +138,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TESTS_CONFIG_PATH = os.path.join(BASE_DIR, "../conf/st2.conf")
 
 
-class RunnerTestCase(unittest2.TestCase):
+class RunnerTestCase(TestCase):
     meta_loader = MetaLoader()
 
     def assertCommonSt2EnvVarsAvailableInEnv(self, env):
@@ -245,6 +244,14 @@ class BaseDbTestCase(BaseTestCase):
 
         cls._drop_collections()
         cls.db_connection.drop_database(cfg.CONF.database.db_name)
+        cls.db_connection = db_setup(
+            cfg.CONF.database.db_name,
+            cfg.CONF.database.host,
+            cfg.CONF.database.port,
+            username=username,
+            password=password,
+            ensure_indexes=False,
+        )
 
         # Explicitly ensure indexes after we re-create the DB otherwise ensure_indexes could failure
         # inside db_setup if test inserted invalid data.
@@ -268,9 +275,6 @@ class BaseDbTestCase(BaseTestCase):
     @classmethod
     def _drop_db(cls):
         cls._drop_collections()
-
-        if cls.db_connection is not None:
-            cls.db_connection.drop_database(cfg.CONF.database.db_name)
 
         db_teardown()
         cls.db_connection = None

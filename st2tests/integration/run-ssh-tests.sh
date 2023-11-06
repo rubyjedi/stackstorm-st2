@@ -70,7 +70,7 @@ function sshtest(){
     for i in `seq 1 ${loop_count}`; do
         echo "Running test: $i"
         output=`st2 run local date --json`
-        # altoutput=`st2 run local date --json | python -mjson.tool`
+        # altoutput=`st2 run local date --json | python -Wd -Werror -mjson.tool`
         status=$(echo "$output" | grep -Po '"status":.*?[^\\]",' | awk '{print $2}' | cut -d ',' -f 1 | tr -d '"')
         if [ $status != "succeeded" ]; then
             echo "Test failed. Output: $output"
@@ -84,7 +84,7 @@ function sshtest(){
     for i in `seq 1 ${loop_count}`; do
         echo "Running test: $i"
         output=`st2 run check.loadavg period=all hosts=127.0.0.1 --json`
-        # altoutput=`st2 run local date --json | python -mjson.tool`
+        # altoutput=`st2 run local date --json | python -Wd -Werror -mjson.tool`
         status=$(echo "$output" | grep -Po '"status":.*?[^\\]",' | awk '{print $2}' | cut -d ',' -f 1 | tr -d '"')
         if [ $status != "succeeded" ]; then
             echo "Test failed. Output: $output"

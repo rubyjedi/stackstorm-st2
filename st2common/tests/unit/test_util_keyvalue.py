@@ -15,7 +15,7 @@
 
 import mock
 
-import unittest2
+from unittest import TestCase
 from oslo_config import cfg
 
 from st2common.util import keyvalue as kv_utl
@@ -44,7 +44,7 @@ RESOURCE_UUID = "%s:%s:%s" % (
 )
 
 
-class TestKeyValueUtil(unittest2.TestCase):
+class TestKeyValueUtil(TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestKeyValueUtil, cls).setUpClass()

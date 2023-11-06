@@ -14,13 +14,13 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.models.system.keyvalue import InvalidUserKeyReferenceError
 from st2common.models.system.keyvalue import UserKeyReference
 
 
-class UserKeyReferenceSystemModelTest(unittest2.TestCase):
+class UserKeyReferenceSystemModelTest(TestCase):
     def test_to_string_reference(self):
         key_ref = UserKeyReference.to_string_reference(user="stanley", name="foo")
         self.assertEqual(key_ref, "stanley:foo")

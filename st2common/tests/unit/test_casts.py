@@ -16,12 +16,12 @@
 from __future__ import absolute_import
 import json
 
-import unittest2
+from unittest import TestCase
 
 from st2common.util.casts import get_cast
 
 
-class CastsTestCase(unittest2.TestCase):
+class CastsTestCase(TestCase):
     def test_cast_string(self):
         cast_func = get_cast("string")
 

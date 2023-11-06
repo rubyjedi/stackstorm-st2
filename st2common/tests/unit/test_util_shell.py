@@ -14,14 +14,14 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.util.shell import quote_unix
 from st2common.util.shell import quote_windows
 from six.moves import zip
 
 
-class ShellUtilsTestCase(unittest2.TestCase):
+class ShellUtilsTestCase(TestCase):
     def test_quote_unix(self):
         arguments = ["foo", "foo bar", "foo1 bar1", '"foo"', '"foo" "bar"', "'foo bar'"]
         expected_values = [

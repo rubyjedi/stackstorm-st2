@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-import unittest2
+from unittest import TestCase
 import yaml
 
 from st2common.util import spec_loader
@@ -23,7 +23,7 @@ from st2common.util import spec_loader
 from st2tests.fixtures.specs import __package__ as specs_fixture_package
 
 
-class SpecLoaderTest(unittest2.TestCase):
+class SpecLoaderTest(TestCase):
     def test_spec_loader(self):
         self.assertTrue(
             isinstance(spec_loader.load_spec("st2common", "openapi.yaml.j2"), dict)

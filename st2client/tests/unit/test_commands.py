@@ -20,7 +20,7 @@ import json
 import logging
 import argparse
 import tempfile
-import unittest2
+from unittest import TestCase
 from collections import namedtuple
 
 from tests import base
@@ -102,7 +102,7 @@ class TestCommands(base.BaseCLITestCase):
             self._reset_output_streams()
 
 
-class TestResourceCommand(unittest2.TestCase):
+class TestResourceCommand(TestCase):
     def __init__(self, *args, **kwargs):
         super(TestResourceCommand, self).__init__(*args, **kwargs)
         self.parser = argparse.ArgumentParser()
@@ -401,7 +401,7 @@ class TestResourceCommand(unittest2.TestCase):
         self.assertEqual(actual, expected)
 
 
-class ResourceViewCommandTestCase(unittest2.TestCase):
+class ResourceViewCommandTestCase(TestCase):
     def setUp(self):
         ResourceViewCommand.display_attributes = []
 
@@ -491,7 +491,8 @@ class CommandsHelpStringTestCase(BaseCLITestCase):
             self.assertIn("usage:", stdout)
             self.assertIn(" ".join(command), stdout)
             # self.assertIn('positional arguments:', stdout)
-            self.assertIn("optional arguments:", stdout)
+            # self.assertIn('optional arguments:', stdout)
+            self.assertRegex(stdout, "options:|optional arguments")
 
             # Reset stdout and stderr after each iteration
             self._reset_output_streams()
@@ -511,7 +512,8 @@ class CommandsHelpStringTestCase(BaseCLITestCase):
             self.assertIn("usage:", stdout)
             self.assertIn(" ".join(command), stdout)
             # self.assertIn('positional arguments:', stdout)
-            self.assertIn("optional arguments:", stdout)
+            # self.assertIn('optional arguments:', stdout)
+            self.assertRegex(stdout, "options:|optional arguments")
 
             # Verify that the actual help usage string was triggered and not the invalid
             # "too few arguments" which would indicate command doesn't actually correctly handle

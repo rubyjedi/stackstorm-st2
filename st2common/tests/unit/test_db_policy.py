@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.constants import pack as pack_constants
 from st2common.models.db.policy import PolicyTypeReference, PolicyTypeDB, PolicyDB
@@ -23,7 +23,7 @@ from st2common.persistence.policy import PolicyType, Policy
 from st2tests import DbModelTestCase
 
 
-class PolicyTypeReferenceTest(unittest2.TestCase):
+class PolicyTypeReferenceTest(TestCase):
     def test_is_reference(self):
         self.assertTrue(PolicyTypeReference.is_reference("action.concurrency"))
         self.assertFalse(PolicyTypeReference.is_reference("concurrency"))

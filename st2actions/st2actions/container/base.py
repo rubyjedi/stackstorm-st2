@@ -210,6 +210,7 @@ class RunnerContainer(object):
         return runner.liveaction
 
     def _do_pause(self, runner):
+        (status, result, context) = None, None, None
         try:
             extra = {"runner": runner}
             LOG.debug(

@@ -48,7 +48,7 @@ from st2common.persistence.rule import Rule
 from st2common.persistence.trigger import TriggerType, Trigger, TriggerInstance
 from st2tests import DbTestCase
 
-from unittest2 import TestCase
+from unittest import TestCase
 from st2tests.base import ALL_MODELS
 
 
@@ -233,7 +233,7 @@ class DbConnectionTestCase(DbTestCase):
 
         # 2. ssl kwarg provided
         ssl_kwargs = _get_ssl_kwargs(ssl=True)
-        self.assertEqual(ssl_kwargs, {"ssl": True, "ssl_match_hostname": True})
+        self.assertEqual(ssl_kwargs, {"ssl": True, "tlsAllowInvalidHostnames": True})
 
         # 2. authentication_mechanism kwarg provided
         ssl_kwargs = _get_ssl_kwargs(authentication_mechanism="MONGODB-X509")
@@ -241,7 +241,7 @@ class DbConnectionTestCase(DbTestCase):
             ssl_kwargs,
             {
                 "ssl": True,
-                "ssl_match_hostname": True,
+                "tlsAllowInvalidHostnames": True,
                 "authentication_mechanism": "MONGODB-X509",
             },
         )
@@ -250,21 +250,21 @@ class DbConnectionTestCase(DbTestCase):
         ssl_kwargs = _get_ssl_kwargs(ssl_keyfile="/tmp/keyfile")
         self.assertEqual(
             ssl_kwargs,
-            {"ssl": True, "ssl_keyfile": "/tmp/keyfile", "ssl_match_hostname": True},
+            {"ssl": True, "ssl_keyfile": "/tmp/keyfile", "tlsAllowInvalidHostnames": True},
         )
 
         # 4. ssl_certfile provided
         ssl_kwargs = _get_ssl_kwargs(ssl_certfile="/tmp/certfile")
         self.assertEqual(
             ssl_kwargs,
-            {"ssl": True, "ssl_certfile": "/tmp/certfile", "ssl_match_hostname": True},
+            {"ssl": True, "ssl_certfile": "/tmp/certfile", "tlsAllowInvalidHostnames": True},
         )
 
         # 5. ssl_ca_certs provided
         ssl_kwargs = _get_ssl_kwargs(ssl_ca_certs="/tmp/ca_certs")
         self.assertEqual(
             ssl_kwargs,
-            {"ssl": True, "ssl_ca_certs": "/tmp/ca_certs", "ssl_match_hostname": True},
+            {"ssl": True, "ssl_ca_certs": "/tmp/ca_certs", "tlsAllowInvalidHostnames": True},
         )
 
         # 6. ssl_ca_certs and ssl_cert_reqs combinations
@@ -275,7 +275,7 @@ class DbConnectionTestCase(DbTestCase):
                 "ssl": True,
                 "ssl_ca_certs": "/tmp/ca_certs",
                 "ssl_cert_reqs": ssl.CERT_NONE,
-                "ssl_match_hostname": True,
+                "tlsAllowInvalidHostnames": True,
             },
         )
 
@@ -288,7 +288,7 @@ class DbConnectionTestCase(DbTestCase):
                 "ssl": True,
                 "ssl_ca_certs": "/tmp/ca_certs",
                 "ssl_cert_reqs": ssl.CERT_OPTIONAL,
-                "ssl_match_hostname": True,
+                "tlsAllowInvalidHostnames": True,
             },
         )
 
@@ -301,7 +301,7 @@ class DbConnectionTestCase(DbTestCase):
                 "ssl": True,
                 "ssl_ca_certs": "/tmp/ca_certs",
                 "ssl_cert_reqs": ssl.CERT_REQUIRED,
-                "ssl_match_hostname": True,
+                "tlsAllowInvalidHostnames": True,
             },
         )
 
@@ -331,7 +331,7 @@ class DbConnectionTestCase(DbTestCase):
                 "tz_aware": True,
                 "authentication_mechanism": "MONGODB-X509",
                 "ssl": True,
-                "ssl_match_hostname": True,
+                "tlsAllowInvalidHostnames": True,
                 "connectTimeoutMS": 3000,
                 "serverSelectionTimeoutMS": 3000,
             },
@@ -571,11 +571,11 @@ class DbCleanupTestCase(DbTestCase):
         """
         Tests dropping the database. Requires the db server to be running.
         """
-        self.assertIn(cfg.CONF.database.db_name, self.db_connection.database_names())
+        self.assertIn(cfg.CONF.database.db_name, self.db_connection.list_database_names())
 
         connection = db_cleanup()
 
-        self.assertNotIn(cfg.CONF.database.db_name, connection.database_names())
+        self.assertNotIn(cfg.CONF.database.db_name, connection.list_database_names())
 
 
 @mock.patch.object(PoolPublisher, "publish", mock.MagicMock())

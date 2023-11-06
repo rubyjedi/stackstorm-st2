@@ -94,7 +94,7 @@ class WorkerTestCase(DbTestCase):
     )
     def test_non_utf8_action_result_string(self):
         action_worker = actions_worker.get_worker()
-        params = {"cmd": "python -c 'print \"\\x82\"'"}
+        params = {"cmd": "python -Wd -Werror -c 'print \"\\x82\"'"}
         liveaction_db = self._get_liveaction_model(
             WorkerTestCase.local_action_db, params
         )

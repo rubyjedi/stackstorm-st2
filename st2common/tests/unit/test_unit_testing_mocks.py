@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2tests.base import BaseSensorTestCase
 from st2tests.mocks.sensor import MockSensorWrapper
@@ -34,7 +34,7 @@ class MockSensorClass(object):
 
 
 class BaseMockResourceServiceTestCase(object):
-    class TestCase(unittest2.TestCase):
+    class TestCase(TestCase):
         def test_get_user_info(self):
             result = self.mock_service.get_user_info()
             self.assertEqual(result["username"], "admin")

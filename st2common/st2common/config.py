@@ -232,7 +232,7 @@ def register_opts(ignore_errors=False):
             "used to validate certificates passed from MongoDB.",
         ),
         cfg.BoolOpt(
-            "ssl_match_hostname",
+            "tlsAllowInvalidHostnames",
             default=True,
             help="If True and `ssl_cert_reqs` is not None, enables hostname verification",
         ),

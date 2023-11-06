@@ -17,7 +17,7 @@ from __future__ import absolute_import
 import os
 import os.path
 
-import unittest2
+from unittest import TestCase
 
 from st2common.util.file_system import get_file_list
 
@@ -25,7 +25,7 @@ CURRENT_DIR = os.path.dirname(__file__)
 ST2TESTS_DIR = os.path.join(CURRENT_DIR, "../../../st2tests/st2tests")
 
 
-class FileSystemUtilsTestCase(unittest2.TestCase):
+class FileSystemUtilsTestCase(TestCase):
     def test_get_file_list(self):
         # Standard exclude pattern
         directory = os.path.join(ST2TESTS_DIR, "policies")
@@ -40,7 +40,7 @@ class FileSystemUtilsTestCase(unittest2.TestCase):
             "meta/__init__.py",
         ]
         result = get_file_list(directory=directory, exclude_patterns=["*.pyc"])
-        self.assertItemsEqual(expected, result)
+        self.assertCountEqual(expected, result)
 
         # Custom exclude pattern
         expected = [
@@ -52,4 +52,4 @@ class FileSystemUtilsTestCase(unittest2.TestCase):
         result = get_file_list(
             directory=directory, exclude_patterns=["*.pyc", "*.yaml", "*BUILD"]
         )
-        self.assertItemsEqual(expected, result)
+        self.assertCountEqual(expected, result)

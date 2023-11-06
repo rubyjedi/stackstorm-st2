@@ -16,7 +16,7 @@
 from __future__ import absolute_import
 import copy
 
-import unittest2
+from unittest import TestCase
 import six
 import mock
 
@@ -24,7 +24,7 @@ from st2client.commands.action import ActionRunCommand
 from st2client.models.action import Action, RunnerType
 
 
-class ActionRunCommandTest(unittest2.TestCase):
+class ActionRunCommandTest(TestCase):
     def test_get_params_types(self):
         runner = RunnerType()
         runner_params = {

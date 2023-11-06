@@ -14,12 +14,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.util import jinja as jinja_utils
 
 
-class JinjaUtilsTimeFilterTestCase(unittest2.TestCase):
+class JinjaUtilsTimeFilterTestCase(TestCase):
     def test_to_human_time_filter(self):
         env = jinja_utils.get_jinja_environment()
 

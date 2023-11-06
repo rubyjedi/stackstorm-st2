@@ -16,7 +16,7 @@
 from __future__ import absolute_import
 from kombu.message import Message
 import mock
-import unittest2
+from unittest import TestCase
 
 from st2common.services.sensor_watcher import SensorWatcher
 from st2common.models.db.sensor import SensorTypeDB
@@ -25,7 +25,7 @@ from st2common.transport.publishers import PoolPublisher
 MOCK_SENSOR_DB = SensorTypeDB(name="foo", pack="test")
 
 
-class SensorWatcherTests(unittest2.TestCase):
+class SensorWatcherTests(TestCase):
     @mock.patch.object(Message, "ack", mock.MagicMock())
     @mock.patch.object(PoolPublisher, "publish", mock.MagicMock())
     def test_assert_handlers_called(self):

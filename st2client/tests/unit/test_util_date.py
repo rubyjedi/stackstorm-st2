@@ -17,7 +17,7 @@ from __future__ import absolute_import
 import datetime
 
 import mock
-import unittest2
+from unittest import TestCase
 
 from st2client.utils.date import add_utc_tz
 from st2client.utils.date import format_dt
@@ -25,7 +25,7 @@ from st2client.utils.date import format_isodate
 from st2client.utils.date import format_isodate_for_user_timezone
 
 
-class DateUtilsTestCase(unittest2.TestCase):
+class DateUtilsTestCase(TestCase):
     def test_format_dt(self):
         dt = datetime.datetime(2015, 10, 20, 8, 0, 0)
         dt = add_utc_tz(dt)

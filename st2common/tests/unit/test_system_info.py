@@ -17,12 +17,12 @@
 from __future__ import absolute_import
 import os
 import socket
-import unittest
+from unittest import TestCase
 
 from st2common.util import system_info
 
 
-class TestLogger(unittest.TestCase):
+class TestLogger(TestCase):
     def test_process_info(self):
         process_info = system_info.get_process_info()
         self.assertEqual(process_info["hostname"], socket.gethostname())

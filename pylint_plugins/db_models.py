@@ -37,12 +37,12 @@ def transform(cls):
     if cls.name == "StormFoundationDB":
         # _fields get added automagically by mongoengine
         if "_fields" not in cls.locals:
-            cls.locals["_fields"] = [nodes.Dict()]
+            cls.locals["_fields"] = [nodes.Dict(parent=None, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)]
 
     if cls.name.endswith("DB"):
         # mongoengine explicitly declared "id" field on each class so we teach pylint about that
         property_name = "id"
-        node = astroid.ClassDef(property_name, None)
+        node = astroid.ClassDef(name=property_name, parent=None, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
         cls.locals[property_name] = [node]
 
 
