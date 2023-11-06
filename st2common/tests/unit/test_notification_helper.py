@@ -14,12 +14,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.models.api.notification import NotificationsHelper
 
 
-class NotificationsHelperTestCase(unittest2.TestCase):
+class NotificationsHelperTestCase(TestCase):
     def test_model_transformations(self):
         notify = {}
 

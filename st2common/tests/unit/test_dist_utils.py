@@ -17,7 +17,7 @@ import os
 import sys
 
 import mock
-import unittest2
+from unittest import TestCase
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS_PATH = os.path.join(BASE_DIR, "../../../scripts/")
@@ -38,7 +38,7 @@ REQUIREMENTS_PATH_2 = os.path.join(BASE_DIR, "../../../requirements.txt")
 VERSION_FILE_PATH = os.path.join(BASE_DIR, "../fixtures/version_file.py")
 
 
-class DistUtilsTestCase(unittest2.TestCase):
+class DistUtilsTestCase(TestCase):
     def setUp(self):
         super(DistUtilsTestCase, self).setUp()
 
@@ -88,7 +88,7 @@ class DistUtilsTestCase(unittest2.TestCase):
         ]
         expected_links = [
             "git+https://github.com/Kami/logshipper.git@stackstorm_patched#egg=logshipper",
-            "git+https://github.com/StackStorm/orquesta.git@224c1a589a6007eb0598a62ee99d674e7836d369#egg=orquesta",  # NOQA
+            "git+https://github.com/RubyJedi/orquesta.git@v1.6.0#egg=orquesta",  # NOQA
             "git+https://github.com/StackStorm/st2-auth-backend-flat-file.git@master#egg=st2-auth-backend-flat-file",  # NOQA
             "git+https://github.com/Kami/logshipper.git@stackstorm_patched#egg=logshipper-editable",
             "git+https://github.com/StackStorm/st2.git#egg=python_runner&subdirectory=contrib/runners/python_runner",  # NOQA

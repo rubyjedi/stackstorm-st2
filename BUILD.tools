@@ -39,7 +39,7 @@ python_requirement(
     name="pytest-reqs",
     resolve="pytest",
     requirements=[
-        "pytest==7.0.1",  # copied from https://www.pantsbuild.org/v2.14/docs/reference-pytest#version
+        "pytest==7.0.3",  # copied from https://www.pantsbuild.org/v2.14/docs/reference-pytest#version
         "pytest-benchmark[histogram]==3.4.1",
         # "pytest-timer[colorama]",
         "pytest-icdiff",

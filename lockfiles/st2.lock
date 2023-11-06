@@ -35,7 +35,7 @@
 //     "mongoengine",
 //     "networkx",
 //     "orjson",
-//     "orquesta@ git+https://github.com/StackStorm/orquesta.git@v1.5.0",
+//     "orquesta@ git+https://github.com/RubyJedi/orquesta.git@v1.5.0",
 //     "oslo.config<1.13,>=1.12.1",
 //     "paramiko",
 //     "pika",
@@ -2270,7 +2270,7 @@
             {
               "algorithm": "sha256",
               "hash": "7fca8661db9156497ea5ed0e3a0865a13704ccc3a51394eb9a3634fb62615f2a",
-              "url": "git+https://github.com/StackStorm/orquesta.git@v1.5.0"
+              "url": "git+https://github.com/RubyJedi/orquesta.git@v1.5.0"
             }
           ],
           "project_name": "orquesta",

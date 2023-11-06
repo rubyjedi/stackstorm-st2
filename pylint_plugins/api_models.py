@@ -275,9 +275,9 @@ def transform(cls: nodes.ClassDef):
         # Now, we can construct the AST node that we'll add to the API model class.
 
         if property_type == "object":
-            node = nodes.Dict()
+            node = nodes.Dict(parent=None, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
         elif property_type == "array":
-            node = nodes.List()
+            node = nodes.List(parent=None, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
         elif property_type == "integer":
             node = scoped_nodes.builtin_lookup("int")[1][0]
         elif property_type == "number":
@@ -290,12 +290,12 @@ def transform(cls: nodes.ClassDef):
             node = scoped_nodes.builtin_lookup("None")[1][0]
         else:
             # Unknown type
-            node = astroid.ClassDef(property_name, None)
+            node = astroid.ClassDef(name=property_name, parent=None, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
 
         # Create a "property = node" assign node
-        assign_node = nodes.Assign(parent=cls)
-        assign_name_node = nodes.AssignName(property_name, parent=assign_node)
-        assign_node.postinit(targets=[assign_name_node], value=node)
+        assign_node = nodes.Assign(parent=cls, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
+        assign_name_node = nodes.AssignName(property_name, parent=assign_node, lineno=None, col_offset=None, end_lineno=None, end_col_offset=None)
+        assign_node.postinit(targets=[assign_name_node], value=node, type_annotation=None)
 
         # Finally, add the property node as an attribute on the class.
         cls.locals[property_name] = [assign_name_node]

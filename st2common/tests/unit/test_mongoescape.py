@@ -14,12 +14,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest
+from unittest import TestCase
 
 from st2common.util import mongoescape
 
 
-class TestMongoEscape(unittest.TestCase):
+class TestMongoEscape(TestCase):
     def test_unnested(self):
         field = {"k1.k1.k1": "v1", "k2$": "v2", "$k3.": "v3"}
         escaped = mongoescape.escape_chars(field)

@@ -16,12 +16,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2client.utils import strutil
 
 
-class StrUtilTestCase(unittest2.TestCase):
+class StrUtilTestCase(TestCase):
     # See https://mail.python.org/pipermail/python-list/2006-January/411909.html
 
     def test_unescape(self):

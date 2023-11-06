@@ -121,6 +121,7 @@ class GetPackDependencies(Action):
 
 def get_pack_version(pack=None):
     pack_path = get_pack_base_path(pack)
+    result = None
     try:
         pack_metadata = get_pack_metadata(pack_dir=pack_path)
         result = pack_metadata.get("version", None)
@@ -132,7 +133,7 @@ def get_pack_version(pack=None):
 
 def get_dependency_list(pack=None):
     pack_path = get_pack_base_path(pack)
-
+    result = None
     try:
         pack_metadata = get_pack_metadata(pack_dir=pack_path)
         result = pack_metadata.get("dependencies", None)

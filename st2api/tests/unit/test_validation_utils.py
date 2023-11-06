@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest2
+from unittest import TestCase
 from oslo_config import cfg
 
 from st2api.validation import validate_auth_cookie_is_correctly_configured
@@ -23,7 +23,7 @@ from st2tests import config as tests_config
 __all__ = ["ValidationUtilsTestCase"]
 
 
-class ValidationUtilsTestCase(unittest2.TestCase):
+class ValidationUtilsTestCase(TestCase):
     def setUp(self):
         super(ValidationUtilsTestCase, self).setUp()
         tests_config.parse_args()
@@ -48,14 +48,12 @@ class ValidationUtilsTestCase(unittest2.TestCase):
         invalid_values = ["strictx", "laxx", "nonex", "invalid"]
 
         for value in invalid_values:
-            cfg.CONF.set_override(
-                group="api", name="auth_cookie_same_site", override=value
-            )
-
-            expected_msg = "Valid values are: strict, lax, none, unset"
-            self.assertRaisesRegexp(
-                ValueError, expected_msg, validate_auth_cookie_is_correctly_configured
-            )
+            expected_msg = f"Valid values are \\[strict, lax, none, unset\\], but found '{value}'"
+            with self.assertRaisesRegexp(ValueError, expected_msg):
+                cfg.CONF.set_override(
+                    group="api", name="auth_cookie_same_site", override=value
+                )
+                validate_auth_cookie_is_correctly_configured()
 
         # SameSite=none + Secure=false is not compatible
         cfg.CONF.set_override(

@@ -14,12 +14,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.util import jinja as jinja_utils
 
 
-class JinjaUtilsRegexFilterTestCase(unittest2.TestCase):
+class JinjaUtilsRegexFilterTestCase(TestCase):
     def test_filters_regex_match(self):
         env = jinja_utils.get_jinja_environment()
 

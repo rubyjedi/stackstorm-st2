@@ -16,7 +16,7 @@
 
 from __future__ import absolute_import
 
-import unittest2
+from unittest import TestCase
 
 from st2common.util.misc import rstrip_last_char
 from st2common.util.misc import strip_shell_chars
@@ -27,7 +27,7 @@ from st2common.util.deep_copy import fast_deepcopy_dict
 __all__ = ["MiscUtilTestCase"]
 
 
-class MiscUtilTestCase(unittest2.TestCase):
+class MiscUtilTestCase(TestCase):
     def test_rstrip_last_char(self):
         self.assertEqual(rstrip_last_char(None, "\n"), None)
         self.assertEqual(rstrip_last_char("stuff", None), "stuff")

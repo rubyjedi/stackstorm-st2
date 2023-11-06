@@ -15,12 +15,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2common.util import jinja as jinja_utils
 
 
-class JinjaUtilsRenderTestCase(unittest2.TestCase):
+class JinjaUtilsRenderTestCase(TestCase):
     def test_render_values(self):
         actual = jinja_utils.render_values(
             mapping={"k1": "{{a}}", "k2": "{{b}}"}, context={"a": "v1", "b": "v2"}

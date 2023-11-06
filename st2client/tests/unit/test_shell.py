@@ -27,7 +27,8 @@ import tempfile
 import requests
 import six
 import mock
-import unittest2
+import unittest
+from unittest import TestCase
 
 import st2client
 from st2client.shell import Shell
@@ -68,7 +69,7 @@ class ShellTestCase(base.BaseCLITestCase):
         super(ShellTestCase, self).setUp()
 
         if six.PY3:
-            # In python --version outputs to stdout and in 2.x to stderr
+            # In python -Wd -Werror --version outputs to stdout and in 2.x to stderr
             self.version_output = self.stdout
         else:
             self.version_output = self.stderr
@@ -516,7 +517,7 @@ class ShellTestCase(base.BaseCLITestCase):
 
         return package_metadata_path
 
-    @unittest2.skipIf(True, "skipping until checks are re-enabled")
+    @unittest.skipIf(True, "skipping until checks are re-enabled")
     @mock.patch.object(
         requests, "get", mock.MagicMock(return_value=base.FakeResponse("{}", 200, "OK"))
     )
@@ -578,7 +579,7 @@ class ShellTestCase(base.BaseCLITestCase):
             )
 
 
-class CLITokenCachingTestCase(unittest2.TestCase):
+class CLITokenCachingTestCase(TestCase):
     def setUp(self):
         super(CLITokenCachingTestCase, self).setUp()
         self._mock_temp_dir_path = tempfile.mkdtemp()

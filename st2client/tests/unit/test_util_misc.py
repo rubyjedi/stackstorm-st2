@@ -14,12 +14,12 @@
 # limitations under the License.
 
 from __future__ import absolute_import
-import unittest2
+from unittest import TestCase
 
 from st2client.utils.misc import merge_dicts
 
 
-class MiscUtilTestCase(unittest2.TestCase):
+class MiscUtilTestCase(TestCase):
     def test_merge_dicts(self):
         d1 = {"a": 1}
         d2 = {"a": 2}

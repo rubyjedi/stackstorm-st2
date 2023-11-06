@@ -32,7 +32,7 @@ class St2TimerTestCase(CleanDbTestCase):
         timer._scheduler = mock.Mock()
 
         # Verify there are no TriggerType in the db when we start
-        self.assertItemsEqual(TriggerType.get_all(), [])
+        self.assertCountEqual(TriggerType.get_all(), [])
 
         timer.start()
 
@@ -55,8 +55,8 @@ class St2TimerTestCase(CleanDbTestCase):
         timer._trigger_watcher.run = mock.Mock()
 
         # Verify there are no Trigger and TriggerType in the db wh:w
-        self.assertItemsEqual(Trigger.get_all(), [])
-        self.assertItemsEqual(TriggerType.get_all(), [])
+        self.assertCountEqual(Trigger.get_all(), [])
+        self.assertCountEqual(TriggerType.get_all(), [])
 
         # Add a dummy timer Trigger object
         type_ = list(TIMER_TRIGGER_TYPES.keys())[0]
