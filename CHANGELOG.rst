@@ -3,6 +3,9 @@ Changelog
 
 in development
 --------------
+LALEE code changes to freshen up the code base for latest feasible packages available for Python 3.9 thru 3.11.
+All bugs introduced are mine, and mine alone for the time being.
+
 
 Fixed
 ~~~~~
