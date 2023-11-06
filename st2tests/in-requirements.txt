@@ -1,9 +1,8 @@
 # Remember to list implicit packages here, otherwise version won't be fixated!
 mock
-unittest2
-nose
 psutil
 webtest
+pynose
 nose-timer
 nose-parallel
 rednose
